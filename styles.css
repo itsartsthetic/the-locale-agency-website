@@ -835,7 +835,7 @@ p {
 /* --- Main (sits above sticky footer) --- */
 main {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   background: var(--color-bg);
 }
 
@@ -843,7 +843,7 @@ main {
 .footer {
   position: sticky;
   bottom: 0;
-  z-index: -1;
+  z-index: 1;
   background: #141414;
   color: var(--color-text-inverse);
   padding: 100px 100px 120px;
