@@ -478,14 +478,37 @@ p {
 }
 
 .feature-item {
-  padding: 1.5rem 0;
-  border-top: 1px solid var(--color-border);
+  position: relative;
+  padding: 1.5rem 0 1.5rem 1.5rem;
   cursor: pointer;
   transition: opacity 0.2s ease;
 }
 
-.feature-item:last-child {
-  border-bottom: 1px solid var(--color-border);
+.feature-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--color-border);
+  border-radius: 2px;
+}
+
+.feature-item .feature-progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 0%;
+  background: var(--color-text-primary);
+  border-radius: 2px;
+  transition: none;
+}
+
+.feature-item.active .feature-progress {
+  transition: height 5s linear;
+  height: 100%;
 }
 
 .feature-item h4 {
@@ -577,7 +600,21 @@ p {
   padding: 2rem;
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-lg);
-  transition: background-color 0.2s ease;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.4s ease, transform 0.4s ease;
+}
+
+.use-case-card.hidden {
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  position: absolute;
+  visibility: hidden;
+}
+
+.use-case-card.showing {
+  opacity: 0;
+  transform: translateY(8px);
 }
 
 .use-case-card:hover {
@@ -602,18 +639,30 @@ p {
 }
 
 .quotes-track {
-  display: flex;
-  gap: 0;
-  transition: transform 0.6s ease;
+  position: relative;
+  min-height: 250px;
 }
 
 .quote-card {
-  min-width: 100%;
-  max-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   padding: 3rem;
   background: var(--color-white);
   border-radius: var(--border-radius-lg);
-  flex-shrink: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.35s linear, transform 0.8s cubic-bezier(0.3, 0, 0, 1);
+  pointer-events: none;
+}
+
+.quote-card.active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.35s linear 0.35s, transform 0.8s cubic-bezier(0.3, 0, 0, 1) 0.35s;
+  pointer-events: auto;
+  position: relative;
 }
 
 .quotes-nav {
@@ -947,7 +996,7 @@ main {
   position: fixed;
   bottom: 1.5rem;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(20px);
   z-index: 110;
   display: flex;
   align-items: center;
@@ -957,6 +1006,9 @@ main {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 100px;
+  opacity: 0;
+  animation: cookie-enter 0.5s ease forwards;
+  animation-delay: 1.5s;
 }
 
 .cookie-banner p {
@@ -970,6 +1022,13 @@ main {
 .cookie-banner .button-solid {
   padding: 6px 14px;
   font-size: 13px;
+}
+
+@keyframes cookie-enter {
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
 /* --- Responsive --- */
@@ -1098,8 +1157,6 @@ main {
   }
 
   .quote-card {
-    min-width: 100%;
-    max-width: 100%;
     padding: 2rem;
   }
 
