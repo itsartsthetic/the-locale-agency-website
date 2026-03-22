@@ -31,11 +31,15 @@
 
   <main id="main">
 
+    <div class="hero-cta-fixed">
+      <a href="#contact" class="button-solid button-solid--dark">Book a call</a>
+    </div>
+
     <!-- ============================================
          SECTION 1: HERO (Cover Stacked)
          ============================================ -->
     <section class="module module-cover">
-      <h1>The operating system<br>for modern brand work</h1>
+      <h1 class="reveal">The operating system<br>for modern brand work</h1>
       <p>Turn guidelines, strategy, and signals into structured intelligence that powers every team, tool, and agent.</p>
       <a href="#contact" class="button-solid button-solid--dark">Book a call</a>
       <div class="hero-visual">
@@ -47,16 +51,23 @@
          SECTION 2: LOGOS (Trusted By)
          ============================================ -->
     <section class="module module-logos">
-      <div class="container">
+      <div class="container reveal">
         <h3>Trusted by brand teams at</h3>
-        <div class="logos-grid">
-          <!-- Logo placeholders — replace with client logos -->
-          <div style="width:100px;height:24px;background:var(--color-border);border-radius:4px;"></div>
-          <div style="width:80px;height:24px;background:var(--color-border);border-radius:4px;"></div>
-          <div style="width:120px;height:24px;background:var(--color-border);border-radius:4px;"></div>
-          <div style="width:90px;height:24px;background:var(--color-border);border-radius:4px;"></div>
-          <div style="width:110px;height:24px;background:var(--color-border);border-radius:4px;"></div>
-          <div style="width:85px;height:24px;background:var(--color-border);border-radius:4px;"></div>
+        <div class="marquee">
+          <div class="marquee-track">
+            <div class="marquee-content">
+              <span class="marquee-item">Lyft</span>
+              <span class="marquee-item">Turo</span>
+              <span class="marquee-item">Groq</span>
+              <span class="marquee-item">Colenso BBDO</span>
+              <span class="marquee-item">Mouthwash</span>
+              <span class="marquee-item">Lyft</span>
+              <span class="marquee-item">Turo</span>
+              <span class="marquee-item">Groq</span>
+              <span class="marquee-item">Colenso BBDO</span>
+              <span class="marquee-item">Mouthwash</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -65,7 +76,7 @@
          SECTION 3: VALUE PROP (Hero Inline)
          ============================================ -->
     <section class="module module-hero-inline">
-      <div class="container">
+      <div class="container reveal">
         <div class="hero-icon">
           <!-- Icon placeholder -->
           <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
@@ -87,7 +98,7 @@
          SECTION 4: CENTERED HEADLINE (Transition)
          ============================================ -->
     <section class="module module-centered-headline">
-      <div class="container">
+      <div class="container reveal">
         <p class="text-large">As AI agents proliferate across your organization, they all need brand context. Brand OS structures your brand into machine-readable intelligence. Brand Studio turns that intelligence into on-brand work at scale.</p>
       </div>
     </section>
@@ -97,7 +108,7 @@
          ============================================ -->
     <section class="module module-features" id="services">
       <div class="container">
-        <div class="features-header">
+        <div class="features-header reveal">
           <h2>Brand OS<br>The structured intelligence layer for your brand</h2>
           <a href="#" class="button-outline">Learn more</a>
         </div>
@@ -141,7 +152,7 @@
          ============================================ -->
     <section class="module module-features">
       <div class="container">
-        <div class="features-header">
+        <div class="features-header reveal">
           <h2>Brand Studio<br>Where brand intelligence<br>meets human craft</h2>
           <a href="#" class="button-outline">Learn more</a>
         </div>
@@ -180,7 +191,7 @@
          ============================================ -->
     <section class="module module-use-cases" id="work">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal">
           <h2>One truth. Every team. Every time.</h2>
         </div>
 
@@ -362,6 +373,15 @@
           </div>
 
         </div>
+        <nav class="quotes-nav">
+          <ul>
+            <li><button class="quotes-nav-item active" data-slide="0"><span class="progress"></span></button></li>
+            <li><button class="quotes-nav-item" data-slide="1"><span class="progress"></span></button></li>
+            <li><button class="quotes-nav-item" data-slide="2"><span class="progress"></span></button></li>
+            <li><button class="quotes-nav-item" data-slide="3"><span class="progress"></span></button></li>
+            <li><button class="quotes-nav-item" data-slide="4"><span class="progress"></span></button></li>
+          </ul>
+        </nav>
       </div>
     </section>
 
@@ -370,7 +390,7 @@
          ============================================ -->
     <section class="module module-news" id="blog">
       <div class="container">
-        <h2>Updates and insights</h2>
+        <h2 class="reveal">Updates and insights</h2>
         <div class="news-grid">
 
           <a href="#" class="news-card">
@@ -414,7 +434,7 @@
          SECTION 10: CTA (Book a Demo)
          ============================================ -->
     <section class="module module-cta" id="contact">
-      <div class="container">
+      <div class="container reveal">
         <h2>Get a personalized demo<br>for your brand</h2>
         <p>See how we help you get time back for high-impact work.</p>
         <a href="#" class="button-solid button-solid--dark">Book a demo</a>
@@ -429,7 +449,9 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-top">
-        <a href="/" class="footer-logo">thelocale.agency</a>
+        <div class="footer-headline">
+          <span class="footer-headline-text"></span><span class="footer-cursor">|</span>
+        </div>
         <div class="footer-cta">
           <a href="#contact" class="button-solid button-solid--dark">Book a call</a>
         </div>
@@ -479,6 +501,11 @@
     </div>
   </footer>
 
+  <div class="cookie-banner" id="cookieBanner">
+    <p>This site uses cookies.</p>
+    <button class="button-solid" onclick="document.getElementById('cookieBanner').style.display='none'">Accept</button>
+  </div>
+
   <!-- ============================================
        JAVASCRIPT — Filter tabs & Feature accordion
        ============================================ -->
@@ -505,6 +532,105 @@
         item.classList.add('active');
       });
     });
+
+    // Quotes carousel
+    (function() {
+      const track = document.querySelector('.quotes-track');
+      const cards = track.querySelectorAll('.quote-card');
+      const navItems = document.querySelectorAll('.quotes-nav-item');
+      let current = 0;
+      let timer;
+      const DURATION = 5000;
+
+      function goTo(index) {
+        current = index;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        navItems.forEach((item, i) => {
+          item.classList.toggle('active', i === index);
+          item.querySelector('.progress').style.width = '0%';
+          item.querySelector('.progress').style.transition = 'none';
+        });
+        // Animate progress on active
+        requestAnimationFrame(() => {
+          navItems[index].querySelector('.progress').style.transition = `width ${DURATION}ms linear`;
+          navItems[index].querySelector('.progress').style.width = '100%';
+        });
+      }
+
+      function next() {
+        goTo((current + 1) % cards.length);
+      }
+
+      navItems.forEach((item, i) => {
+        item.addEventListener('click', () => {
+          clearInterval(timer);
+          goTo(i);
+          timer = setInterval(next, DURATION);
+        });
+      });
+
+      goTo(0);
+      timer = setInterval(next, DURATION);
+    })();
+
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Hero fixed CTA - show after scrolling past hero
+    const heroCta = document.querySelector('.hero-cta-fixed');
+    const heroSection = document.querySelector('.module-cover');
+    const ctaSection = document.querySelector('.module-cta');
+
+    window.addEventListener('scroll', () => {
+      const heroBottom = heroSection.getBoundingClientRect().bottom;
+      const ctaTop = ctaSection.getBoundingClientRect().top;
+      const show = heroBottom < 0 && ctaTop > window.innerHeight;
+      heroCta.classList.toggle('visible', show);
+    });
+
+    // Footer rotating headline
+    (function() {
+      const phrases = ['Brand strategy', 'Creative direction', 'Digital experiences', 'Brand systems'];
+      const el = document.querySelector('.footer-headline-text');
+      if (!el) return;
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let deleting = false;
+
+      function type() {
+        const current = phrases[phraseIndex];
+        if (!deleting) {
+          el.textContent = current.substring(0, charIndex + 1);
+          charIndex++;
+          if (charIndex === current.length) {
+            deleting = true;
+            setTimeout(type, 2000);
+            return;
+          }
+          setTimeout(type, 80);
+        } else {
+          el.textContent = current.substring(0, charIndex - 1);
+          charIndex--;
+          if (charIndex === 0) {
+            deleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            setTimeout(type, 500);
+            return;
+          }
+          setTimeout(type, 40);
+        }
+      }
+      type();
+    })();
   </script>
 
 </body>
