@@ -5,7 +5,7 @@
 /* --- CSS Custom Properties / Design Tokens --- */
 :root {
   --color-bg: #F7F5F2;
-  --color-bg-dark: #1B1B1B;
+  --color-bg-dark: #013927;
   --color-text-primary: #1B1B1B;
   --color-text-secondary: #8C877D;
   --color-text-inverse: #F7F5F2;
@@ -183,13 +183,13 @@ p {
 
 .button-solid--dark,
 .button-cta {
-  background-color: var(--color-black);
+  background-color: var(--color-bg-dark);
   color: var(--color-white);
 }
 
 .button-solid--dark:hover,
 .button-cta:hover {
-  background-color: #333;
+  background-color: #025a3d;
 }
 
 .button-clear {
