@@ -8,9 +8,6 @@
   <meta name="description" content="The Locale Agency is a modern media and marketing partner — built on trust, powered by AI, and designed for businesses that are ready to grow without the noise.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -20,34 +17,71 @@
        ============================================ -->
   <header class="header">
     <nav class="header-nav">
-      <a href="/" class="header-nav-logo">
+      <a href="index.html" class="header-nav-logo">
+        <svg class="logo-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="20" cy="12" r="4" stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="13" cy="24" r="4" stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="27" cy="24" r="4" stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="20" cy="20" r="4" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="20" y1="16" x2="20" y2="16" stroke="currentColor" stroke-width="1"/>
+          <line x1="16.5" y1="22" x2="17" y2="21" stroke="currentColor" stroke-width="1"/>
+          <line x1="23.5" y1="22" x2="23" y2="21" stroke="currentColor" stroke-width="1"/>
+        </svg>
         <span>thelocale.agency</span>
       </a>
       <ul class="nav-top">
-        <li><a href="#services" class="button-clear">Services</a></li>
+        <li><a href="index.html#services" class="button-clear">Services</a></li>
         <li><a href="work.html" class="button-clear">Work</a></li>
-        <li><a href="#blog" class="button-clear">Blog</a></li>
-        <li class="push-right"><a href="#contact" class="button-clear">Contact</a></li>
-        <li><a href="#contact" class="button-solid">Work With Us</a></li>
+        <li><a href="blog/index.html" class="button-clear">Blog</a></li>
+        <li class="push-right"><a href="contact.html" class="button-solid">Work With Us</a></li>
       </ul>
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span class="nav-hamburger-line"></span>
+        <span class="nav-hamburger-line"></span>
+      </button>
     </nav>
   </header>
+
+  <div class="nav-mobile-overlay" aria-hidden="true">
+    <nav class="nav-mobile">
+      <a href="index.html#services">Services</a>
+      <a href="work.html">Work</a>
+      <a href="blog/index.html">Blog</a>
+      <a href="contact.html" class="button-solid button-solid--dark">Work With Us</a>
+    </nav>
+  </div>
 
   <main id="main">
 
     <div class="hero-cta-fixed">
-      <a href="#contact" class="button-solid button-solid--dark">Book a call</a>
+      <a href="contact.html" class="button-solid button-solid--dark">Work With Us</a>
     </div>
 
     <!-- ============================================
          SECTION 1: HERO (Cover Stacked)
          ============================================ -->
     <section class="module module-cover">
-      <h1 class="reveal">We're Local<br>in the Business of Growth.</h1>
-      <p>The Locale Agency is a modern media and marketing partner — built on trust, powered by AI, and designed for businesses that are ready to grow without the noise.</p>
-      <a href="#contact" class="button-solid button-solid--dark">Work With Us</a>
-      <a href="#services" class="button-clear">See What We Do &rarr;</a>
-      <div class="hero-visual" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80'); background-size: cover; background-position: center;">
+      <div class="hero-video-container">
+        <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80">
+          <source src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" type="video/mp4">
+        </video>
+        <div class="hero-video-overlay"></div>
+      </div>
+      <h1 class="hero-animated">
+        <span class="hero-word">We're</span>
+        <span class="hero-word">Local</span>
+        <br>
+        <span class="hero-word">in</span>
+        <span class="hero-word">the</span>
+        <span class="hero-word">Business</span>
+        <span class="hero-word">of</span>
+        <span class="hero-word">Growth.</span>
+      </h1>
+      <p class="hero-fade-in">The Locale Agency is a modern media and marketing partner — built on trust, powered by AI, and designed for businesses that are ready to grow without the noise.</p>
+      <div class="hero-buttons hero-fade-in">
+        <a href="contact.html" class="button-solid button-solid--dark">Work With Us</a>
+        <a href="#services" class="button-clear">See What We Do &rarr;</a>
       </div>
     </section>
 
@@ -56,13 +90,6 @@
          ============================================ -->
     <section class="module module-hero-inline">
       <div class="container reveal">
-        <div class="hero-icon">
-          <!-- Icon placeholder -->
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-            <circle cx="24" cy="24" r="23" stroke="currentColor" stroke-width="2"/>
-            <path d="M16 24h16M24 16v16" stroke="currentColor" stroke-width="2"/>
-          </svg>
-        </div>
         <p class="text-large">From strategy and creative to multi-channel media, AI-powered automation, and personal brand development — we work close, move fast, and deliver like a team that genuinely knows your business.</p>
         <div class="hero-visual-grid">
           <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?w=400&q=80'); background-size: cover; background-position: center;"></div>
@@ -78,7 +105,8 @@
          ============================================ -->
     <section class="module module-centered-headline">
       <div class="container reveal">
-        <p class="text-large">We are not a traditional agency that bolted AI onto old processes. We built our workflows around AI from day one — so our clients get speed, intelligence, and modern tools without losing the human relationships that make work actually land.</p>
+        <h2 class="centered-tagline">One Team. Every Channel. Every Time.</h2>
+        <p class="text-large">We built our workflows around AI from day one — so our clients get speed, intelligence, and modern tools without losing the human relationships that make work actually land.</p>
       </div>
     </section>
 
@@ -97,31 +125,31 @@
               <div class="feature-progress"></div>
               <h4>Strategy &amp; Consulting</h4>
               <p>Before you spend a dollar on media, you need a plan worth executing. We align your goals, audience, and channels into a strategy your whole team can move from.</p>
-              <a href="#contact" class="feature-link button-clear">Get Clarity &rarr;</a>
+              <a href="contact.html" class="feature-link button-clear">Get Clarity &rarr;</a>
             </div>
             <div class="feature-item">
               <div class="feature-progress"></div>
               <h4>Multi-Channel Media</h4>
               <p>Paid social, search, programmatic, SEO, and content — planned and executed as one connected system. Your message in front of the right people, across every channel that matters.</p>
-              <a href="#contact" class="feature-link button-clear">Get Found &rarr;</a>
+              <a href="contact.html" class="feature-link button-clear">Get Found &rarr;</a>
             </div>
             <div class="feature-item">
               <div class="feature-progress"></div>
               <h4>Creative Studio &amp; Production</h4>
               <p>Brand-quality photography, video, and content at modern speed. We do not just make things look good — we make content that performs because we understand the channels it lives on.</p>
-              <a href="#contact" class="feature-link button-clear">Get Noticed &rarr;</a>
+              <a href="contact.html" class="feature-link button-clear">Get Noticed &rarr;</a>
             </div>
             <div class="feature-item">
               <div class="feature-progress"></div>
               <h4>AI Architecture &amp; Automation</h4>
               <p>We design and build AI-powered systems that remove bottlenecks, accelerate decisions, and give your team back time. Purpose-built for your business — not bolt-on tools that add complexity.</p>
-              <a href="#contact" class="feature-link button-clear">Get Efficient &rarr;</a>
+              <a href="contact.html" class="feature-link button-clear">Get Efficient &rarr;</a>
             </div>
             <div class="feature-item">
               <div class="feature-progress"></div>
               <h4>Personal Branding &amp; Talent Management</h4>
               <p>For founders, executives, and creators who want their name to mean something. We shape your public presence, manage your partnerships, and build the reputation that opens doors.</p>
-              <a href="#contact" class="feature-link button-clear">Get Trusted &rarr;</a>
+              <a href="contact.html" class="feature-link button-clear">Get Trusted &rarr;</a>
             </div>
           </div>
           <div class="features-visual" style="background-image: url('https://images.unsplash.com/photo-1620121692029-d088224ddc74?w=800&q=80'); background-size: cover; background-position: center;">
@@ -168,7 +196,53 @@
     </section>
 
     <!-- ============================================
-         SECTION 7: OUR WORK
+         SECTION 7: ABOUT US
+         ============================================ -->
+    <section class="module module-about" id="about">
+      <div class="container">
+        <div class="about-header reveal">
+          <h3>About Us</h3>
+          <h2>We exist to make growth feel possible — for every business willing to show up and do the work.</h2>
+          <p>The Locale Agency was built for businesses that deserve better than templated strategies and arm's-length relationships. We combine the sharpness of AI with the closeness of a team that genuinely knows your business — because growth should never feel out of reach.</p>
+        </div>
+        <div class="values-grid reveal">
+          <div class="value-card">
+            <h4>Trust First</h4>
+            <p>Every relationship starts with honesty. We tell you what will work, what will not, and why — before we spend a dollar of your budget.</p>
+          </div>
+          <div class="value-card">
+            <h4>AI With Purpose</h4>
+            <p>We do not use AI to impress. We use it to remove friction, surface insights faster, and give your team back the time that matters.</p>
+          </div>
+          <div class="value-card">
+            <h4>Close Like Local</h4>
+            <p>No handoffs to strangers. No disappearing acts. We work like we are sitting in your office — because the best work comes from proximity.</p>
+          </div>
+          <div class="value-card">
+            <h4>Built to Scale</h4>
+            <p>Whether you are a founder finding your voice or a brand going global — our model flexes with you, not against you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 8: VIDEO SHOWCASE
+         ============================================ -->
+    <section class="module module-video-showcase">
+      <div class="container reveal">
+        <h3>How We Work</h3>
+        <h2>See our process in action.</h2>
+      </div>
+      <div class="video-showcase-player reveal">
+        <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=80">
+          <source src="https://videos.pexels.com/video-files/5532771/5532771-uhd_2560_1440_25fps.mp4" type="video/mp4">
+        </video>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 9: OUR WORK
          ============================================ -->
     <section class="module module-use-cases" id="work">
       <div class="container">
@@ -178,10 +252,10 @@
         </div>
 
         <div class="use-cases-grid">
-          <div class="use-case-card" data-category="strategy">
+          <a href="work/influencer-campaign.html" class="use-case-card" data-category="strategy">
             <h4>Influencer Campaign — Food &amp; Beverage</h4>
             <p>Full-service influencer campaign management — from creator sourcing and briefing through to content approval and performance tracking. We handled every touchpoint so the client could focus on their business.</p>
-          </div>
+          </a>
           <div class="use-case-card" data-category="strategy">
             <h4>End-to-End Campaign Management</h4>
             <p>Authentic content. On-brand delivery. A client who never had to chase for updates.</p>
@@ -285,8 +359,8 @@
         <h2 class="reveal">Updates and insights</h2>
         <div class="news-grid">
 
-          <a href="#" class="news-card">
-            <div class="news-card-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&q=80'); background-size: cover; background-position: center;"></div>
+          <a href="blog/ai-native-agencies.html" class="news-card">
+            <div class="news-card-image" style="background-image: url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=80'); background-size: cover; background-position: center;"></div>
             <div class="news-card-content">
               <h4>Why AI-native agencies will replace the traditional model</h4>
               <div class="news-card-meta">
@@ -296,28 +370,31 @@
             </div>
           </a>
 
-          <a href="#" class="news-card">
-            <div class="news-card-image" style="background-image: url('https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=600&q=80'); background-size: cover; background-position: center;"></div>
+          <a href="blog/integrated-delivery.html" class="news-card">
+            <div class="news-card-image" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80'); background-size: cover; background-position: center;"></div>
             <div class="news-card-content">
               <h4>Five services, one team: how integrated delivery actually works</h4>
               <div class="news-card-meta">
                 <span>Operations</span>
-                <span>Mar 2026</span>
+                <span>Feb 2026</span>
               </div>
             </div>
           </a>
 
-          <a href="#" class="news-card">
-            <div class="news-card-image" style="background-image: url('https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?w=600&q=80'); background-size: cover; background-position: center;"></div>
+          <a href="blog/personal-branding-ai.html" class="news-card">
+            <div class="news-card-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80'); background-size: cover; background-position: center;"></div>
             <div class="news-card-content">
               <h4>Personal branding in the age of AI: why founders need to show up</h4>
               <div class="news-card-meta">
                 <span>Personal Brand</span>
-                <span>Mar 2026</span>
+                <span>Jan 2026</span>
               </div>
             </div>
           </a>
 
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+          <a href="blog/index.html" class="button-outline">View All Articles &rarr;</a>
         </div>
       </div>
     </section>
@@ -329,61 +406,7 @@
       <div class="container reveal">
         <h2>Built Different.<br>Let's Build Together.</h2>
         <p>Tell us about your business and we will get back to you within 24 hours.</p>
-        <form class="contact-form" action="https://formsubmit.co/hello@thelocaleagency.com" method="POST">
-          <input type="hidden" name="_subject" value="New enquiry from thelocaleagency.com">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="text" name="_honey" style="display:none">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="name">Name *</label>
-              <input type="text" id="name" name="name" placeholder="Your name" required>
-            </div>
-            <div class="form-group">
-              <label for="business">Business Name *</label>
-              <input type="text" id="business" name="business" placeholder="Your business" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="email">Email *</label>
-              <input type="email" id="email" name="email" placeholder="you@company.com" required>
-            </div>
-            <div class="form-group">
-              <label for="phone">Phone</label>
-              <input type="tel" id="phone" name="phone" placeholder="+61 ...">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="service">Service</label>
-              <select id="service" name="service">
-                <option value="">Select a service...</option>
-                <option>Strategy &amp; Consulting</option>
-                <option>Multi-Channel Media</option>
-                <option>Creative Studio &amp; Production</option>
-                <option>AI Architecture &amp; Automation</option>
-                <option>Personal Branding &amp; Talent Management</option>
-                <option>Not sure yet</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="budget">Budget Range</label>
-              <select id="budget" name="budget">
-                <option value="">Select budget range...</option>
-                <option>Under $5,000</option>
-                <option>$5,000 - $15,000</option>
-                <option>$15,000 - $50,000</option>
-                <option>$50,000+</option>
-                <option>Not sure yet</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group form-group--full">
-            <label for="message">Tell us about your project *</label>
-            <textarea id="message" name="message" rows="5" placeholder="What are you looking to achieve?" required></textarea>
-          </div>
-          <button type="submit" class="button-solid button-solid--dark">Send Enquiry</button>
-        </form>
+        <a href="contact.html" class="button-solid button-solid--dark">Work With Us</a>
         <p style="margin-top: 1.5rem; font-size: 0.85rem; opacity: 0.7;">Based in Australia. Working globally. Always close.</p>
       </div>
     </section>
@@ -400,7 +423,7 @@
           <span class="footer-headline-text"></span><span class="footer-cursor">|</span>
         </div>
         <div class="footer-cta">
-          <a href="#contact" class="button-solid button-solid--dark">Book a call</a>
+          <a href="contact.html" class="button-solid button-solid--dark">Work With Us</a>
         </div>
       </div>
 
@@ -419,8 +442,8 @@
           <h3>Company</h3>
           <ul>
             <li><a href="work.html">Our Work</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="blog/index.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
         <div class="footer-nav-group">
@@ -446,6 +469,42 @@
        JAVASCRIPT — Filter tabs & Feature accordion
        ============================================ -->
   <script>
+    // Hero video parallax on scroll
+    (function() {
+      const video = document.querySelector('.hero-video');
+      if (!video) return;
+      window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const heroHeight = document.querySelector('.module-cover').offsetHeight;
+        if (scrolled < heroHeight) {
+          video.style.transform = 'translateY(' + (scrolled * 0.3) + 'px) scale(1.05)';
+        }
+      }, { passive: true });
+    })();
+
+    // Hamburger menu
+    (function() {
+      const hamburger = document.querySelector('.nav-hamburger');
+      const overlay = document.querySelector('.nav-mobile-overlay');
+      if (!hamburger || !overlay) return;
+      hamburger.addEventListener('click', function() {
+        const isOpen = hamburger.classList.toggle('open');
+        overlay.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-expanded', isOpen);
+        overlay.setAttribute('aria-hidden', !isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+      overlay.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          hamburger.classList.remove('open');
+          overlay.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+          overlay.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        });
+      });
+    })();
+
     // Filter tabs for use cases (animated)
     document.querySelectorAll('.filter-tab').forEach(tab => {
       tab.addEventListener('click', () => {
@@ -587,12 +646,14 @@
     const heroSection = document.querySelector('.module-cover');
     const ctaSection = document.querySelector('.module-cta');
 
-    window.addEventListener('scroll', () => {
-      const heroBottom = heroSection.getBoundingClientRect().bottom;
-      const ctaTop = ctaSection.getBoundingClientRect().top;
-      const show = heroBottom < 0 && ctaTop > window.innerHeight;
-      heroCta.classList.toggle('visible', show);
-    });
+    if (heroCta && heroSection && ctaSection) {
+      window.addEventListener('scroll', () => {
+        const heroBottom = heroSection.getBoundingClientRect().bottom;
+        const ctaTop = ctaSection.getBoundingClientRect().top;
+        const show = heroBottom < 0 && ctaTop > window.innerHeight;
+        heroCta.classList.toggle('visible', show);
+      });
+    }
 
     // Footer rotating headline
     (function() {
