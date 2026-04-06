@@ -1400,9 +1400,18 @@ function clearSavedProgress() {
 
 function saveAndExit() {
   saveProgress();
-  const indicator = document.getElementById('nav-saved');
-  indicator.textContent = 'progress saved — you can close this tab';
-  indicator.classList.add('show');
+  const btn = document.querySelector('.btn-secondary');
+  const original = btn.innerHTML;
+  btn.innerHTML = 'Saved — you can close this tab';
+  btn.style.borderColor = 'var(--deep-green)';
+  btn.style.background = 'var(--deep-green)';
+  btn.style.color = 'var(--white)';
+  setTimeout(() => {
+    btn.innerHTML = original;
+    btn.style.borderColor = '';
+    btn.style.background = '';
+    btn.style.color = '';
+  }, 4000);
 }
 
 // Auto-save on changes (debounced)
