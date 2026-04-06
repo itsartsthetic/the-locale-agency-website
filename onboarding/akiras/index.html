@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Client Intake — The Locale Agency</title>
+<style>
+/* ── Locale Brand Tokens ── */
+:root {
+  --forest:      #013927;
+  --deep-green:  #025A3D;
+  --cream:       #F7F5F2;
+  --near-black:  #1B1B1B;
+  --pure-black:  #141414;
+  --warm-gray:   #8C877D;
+  --white:       #FFFFFF;
+  --border:      rgba(27,27,27,0.10);
+  --border-lt:   rgba(27,27,27,0.06);
+  --radius:      6px;
+  --radius-lg:   12px;
+  --gutter:      4rem;
+  --container:   1440px;
+  --font-main:   'ABC Monument Grotesk', Helvetica, Arial, sans-serif;
+  --font-mono:   'ABC Monument Grotesk Semi-Mono', 'Courier New', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-main);
+  background: var(--cream);
+  color: var(--near-black);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky;
+  top: 1.25rem;
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  padding: 0 var(--gutter);
+  pointer-events: none;
+}
+
+.nav-pill {
+  background: var(--forest);
+  border-radius: 14px;
+  padding: 0.75rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  pointer-events: all;
+  width: min(860px, 100%);
+  box-shadow: 0 8px 32px rgba(1,57,39,0.18), 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.nav-logo {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.nav-label {
+  font-size: 12px;
+  color: rgba(247,245,242,0.60);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.nav-progress-wrap {
+  flex: 1;
+  max-width: 200px;
+}
+
+.nav-bar {
+  height: 2px;
+  background: rgba(247,245,242,0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.nav-fill {
+  height: 100%;
+  background: rgba(247,245,242,0.85);
+  width: 0%;
+  transition: width 0.4s ease;
+  border-radius: 2px;
+}
+
+.nav-pct {
+  font-size: 11px;
+  color: rgba(247,245,242,0.50);
+  font-family: var(--font-mono);
+  margin-top: 0.3rem;
+  display: block;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--forest);
+  padding: 7rem var(--gutter) 5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* watermark logo mark */
+.hero::before {
+  content: '';
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  border: 1px solid rgba(247,245,242,0.06);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  border: 1px solid rgba(247,245,242,0.04);
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(247,245,242,0.60);
+  margin-bottom: 2rem;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: rgba(247,245,242,0.40);
+}
+
+.hero h1 {
+  font-size: clamp(40px, 5.5vw, 80px);
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  max-width: 720px;
+  margin-bottom: 2rem;
+}
+
+.hero h1 span {
+  color: rgba(247,245,242,0.45);
+  font-weight: 400;
+}
+
+.hero-sub {
+  font-size: 18px;
+  color: rgba(247,245,242,0.65);
+  max-width: 540px;
+  line-height: 1.65;
+  letter-spacing: -0.02em;
+  margin-bottom: 3rem;
+}
+
+.hero-tags {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: rgba(247,245,242,0.08);
+  border: 1px solid rgba(247,245,242,0.12);
+  color: rgba(247,245,242,0.70);
+  font-size: 12px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 100px;
+}
+
+/* ── TRACK BANNER ── */
+.track-banner {
+  background: var(--near-black);
+  padding: 1.5rem var(--gutter);
+}
+
+.track-banner-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.track-id {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(247,245,242,0.40);
+  white-space: nowrap;
+}
+
+.track-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: -0.02em;
+}
+
+.track-desc {
+  font-size: 13px;
+  color: var(--warm-gray);
+  letter-spacing: -0.01em;
+  margin-left: auto;
+}
+
+/* ── MAIN LAYOUT ── */
+main {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* ── SECTION ── */
+.section {
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 4rem;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-left {}
+
+.section-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--warm-gray);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--near-black);
+  margin-bottom: 0.75rem;
+}
+
+.section-note {
+  font-size: 14px;
+  color: var(--warm-gray);
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+}
+
+.section-right {}
+
+/* ── QUESTION ── */
+.q { margin-bottom: 2rem; }
+
+.q:last-child { margin-bottom: 0; }
+
+label.q-label {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--near-black);
+  margin-bottom: 0.4rem;
+}
+
+.q-hint {
+  display: block;
+  font-size: 13px;
+  color: var(--warm-gray);
+  letter-spacing: -0.01em;
+  line-height: 1.55;
+  margin-bottom: 0.75rem;
+}
+
+/* ── INPUTS ── */
+input[type="text"],
+input[type="email"],
+input[type="url"],
+select,
+textarea {
+  width: 100%;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  color: var(--near-black);
+  font-family: var(--font-main);
+  font-size: 15px;
+  letter-spacing: -0.02em;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius);
+  outline: none;
+  appearance: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--forest);
+  box-shadow: 0 0 0 3px rgba(1,57,39,0.08);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.65;
+}
+
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238C877D' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+select option { color: var(--near-black); background: var(--white); }
+
+/* ── CHECK GRID ── */
+.check-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 0.5rem;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--near-black);
+  letter-spacing: -0.01em;
+  background: var(--white);
+  transition: border-color 0.15s, background 0.15s;
+  user-select: none;
+}
+
+.check-item:hover {
+  border-color: rgba(1,57,39,0.3);
+  background: rgba(1,57,39,0.03);
+}
+
+.check-item input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--forest);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* ── SCALE ── */
+.scale-row {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.scale-btn {
+  flex: 1;
+  padding: 0.7rem 0.2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--warm-gray);
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+}
+
+.scale-btn:hover { border-color: var(--forest); color: var(--forest); }
+.scale-btn.active { background: var(--forest); border-color: var(--forest); color: var(--white); }
+
+.scale-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--warm-gray);
+  font-family: var(--font-mono);
+  margin-top: 0.5rem;
+  letter-spacing: 0.04em;
+}
+
+/* ── PERSONALITY CARD ── */
+.personality-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.p-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.2rem;
+  background: var(--white);
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+}
+
+.p-card:hover { border-color: rgba(1,57,39,0.3); }
+.p-card input[type="radio"] { position: absolute; opacity: 0; }
+.p-card.selected { border-color: var(--forest); background: rgba(1,57,39,0.04); }
+.p-card.selected .p-card-title { color: var(--forest); }
+
+.p-card-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--near-black);
+  margin-bottom: 0.3rem;
+}
+
+.p-card-desc {
+  font-size: 12px;
+  color: var(--warm-gray);
+  line-height: 1.5;
+}
+
+/* ── TWO COL ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+/* ── SUBMIT SECTION ── */
+.submit-wrap {
+  padding: 5rem 0 8rem;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 4rem;
+}
+
+.submit-left .section-title { font-size: 28px; }
+
+.submit-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.submit-note {
+  font-size: 14px;
+  color: var(--warm-gray);
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+  max-width: 440px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--forest);
+  color: var(--white);
+  font-family: var(--font-main);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s ease;
+  width: fit-content;
+}
+
+.btn-primary:hover { background: var(--deep-green); }
+.btn-primary:disabled { background: var(--warm-gray); cursor: not-allowed; }
+
+.btn-arrow { font-size: 18px; transition: transform 0.2s; }
+.btn-primary:hover .btn-arrow { transform: translateX(3px); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: transparent;
+  color: var(--forest);
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  padding: 10px 20px;
+  border: 1.5px solid var(--forest);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  width: fit-content;
+}
+.btn-secondary:hover { background: var(--forest); color: var(--white); }
+
+.nav-saved {
+  font-size: 11px;
+  color: var(--warm-gray);
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  margin-left: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.nav-saved.show { opacity: 1; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--pure-black);
+  padding: 2rem var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-logo { font-size: 13px; font-weight: 700; color: var(--cream); letter-spacing: -0.02em; }
+.footer-text { font-size: 12px; color: rgba(247,245,242,0.40); font-family: var(--font-mono); letter-spacing: 0.06em; }
+
+/* ── SUCCESS STATE ── */
+.success-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--forest);
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+  padding: 3rem;
+}
+
+.success-overlay.show { display: flex; }
+.success-icon { font-size: 3rem; }
+.success-title { font-size: 40px; font-weight: 700; color: var(--cream); letter-spacing: -0.04em; }
+.success-sub { font-size: 16px; color: rgba(247,245,242,0.60); max-width: 400px; line-height: 1.7; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  :root { --gutter: 1.5rem; }
+  .section, .submit-wrap { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 0; }
+  .track-banner-inner { flex-wrap: wrap; gap: 0.5rem; }
+  .track-desc { display: none; }
+  .personality-grid { grid-template-columns: 1fr; }
+  .two-col { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 36px; }
+  .nav-pill { padding: 0.65rem 1.25rem; gap: 1.5rem; }
+  .nav-label { display: none; }
+}
+
+/* ── ANIMATE IN ── */
+@keyframes heroFade {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-inner > * {
+  animation: heroFade 0.7s ease both;
+}
+
+.hero-eyebrow { animation-delay: 0.1s; }
+.hero h1      { animation-delay: 0.2s; }
+.hero-sub     { animation-delay: 0.3s; }
+.hero-tags    { animation-delay: 0.4s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-pill">
+    <span class="nav-logo">thelocale.agency</span>
+    <span class="nav-label">Client Intake</span>
+    <div class="nav-progress-wrap">
+      <div class="nav-bar"><div class="nav-fill" id="nav-fill"></div></div>
+      <span class="nav-pct" id="nav-pct">0% complete</span>
+      <span class="nav-saved" id="nav-saved"></span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">New Client Onboarding</div>
+    <h1>Let's build something<br/><span>worth being known for.</span></h1>
+    <p class="hero-sub">
+      Two tracks, one conversation. This intake covers your personal brand
+      and your AI product vision. Be candid — it directly shapes the quality of everything we build.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Personal Brand</span>
+      <span class="tag">AI Product</span>
+      <span class="tag">Tech Law</span>
+      <span class="tag">Confidential</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- TRACK A BANNER                          -->
+<!-- ════════════════════════════════════════ -->
+<div class="track-banner">
+  <div class="track-banner-inner">
+    <span class="track-id">Track A</span>
+    <span class="track-title">Personal Brand</span>
+    <span class="track-desc">Who you are, how you think, and how the world should know you.</span>
+  </div>
+</div>
+
+<main>
+
+<!-- ── S01: YOU AS A LAWYER ── -->
+<div class="section" id="s01">
+  <div class="section-left">
+    <div class="section-num">01 / 08</div>
+    <div class="section-title">You as a Lawyer</div>
+    <p class="section-note">Before we talk positioning, we need to understand your practice — and the instincts that make you good at it.</p>
+  </div>
+  <div class="section-right">
+
+    <div class="q">
+      <label class="q-label">Full name and current title or firm</label>
+      <input type="text" placeholder="e.g. Sarah Chen — Principal, Chen Legal"/>
+    </div>
+
+    <div class="q">
+      <label class="q-label">What type of law do you practise?</label>
+      <span class="q-hint">SaaS contracts, IP licensing, data privacy, startup advisory, AI regulation, M&A, employment in tech, cross-border transactions — which of these are actually your bread and butter?</span>
+      <textarea placeholder="e.g. Technology transactions and SaaS agreements are the core. I also do a lot of IP licensing for software companies and increasingly, AI liability and data governance work for early-stage startups…"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="q-label">How many years have you been practising — and what have been the defining chapters?</label>
+      <span class="q-hint">Firm history, pivotal matters, transitions, the moment your specialisation clicked.</span>
+      <textarea placeholder="Outline the arc — where you started, what changed, where you are now…"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="q-label">What kinds of matters do you most enjoy working on — and which do you find draining?</label>
+      <span class="q-hint">Honest answer. This shapes what we amplify in your brand.</span>
+      <div class="two-col" style="margin-bottom:0.75rem">
+        <textarea placeholder="Energising work…" style="min-height:90px"></textarea>
+        <textarea placeholder="Work I could do without…" style="min-height:90px"></textarea>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Where do most of your clients come from today?</label>
+      <select>
+        <option value="">— Select primary source —</option>
+        <option>Referrals from existing clients</option>
+        <option>Referrals from other lawyers / professionals</option>
+        <option>LinkedIn organic presence</option>
+        <option>Speaking engagements or events</option>
+        <option>Firm website / SEO</option>
+        <option>Professional directories</option>
+        <option>A mix — nothing dominant</option>
+      </select>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── S02: PERSONALITY ── -->
+<div class="section" id="s02">
+  <div class="section-left">
+    <div class="section-num">02 / 08</div>
+    <div class="section-title">Personality & Working Style</div>
+    <p class="section-note">Brand is a reflection of character — not a costume. These questions surface who you naturally are.</p>
+  </div>
+  <div class="section-right">
+
+    <div class="q">
+      <label class="q-label">How would clients who love working with you describe you — not your credentials, but how it feels to work with you?</label>
+      <span class="q-hint">The thing they'd say to a colleague before making a referral. The reason they'd vouch for you.</span>
+      <textarea placeholder="e.g. "She's frighteningly sharp but makes you feel smart, not small. She calls out risk without making you panic. You always leave knowing exactly where you stand.""></textarea>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Which of these best describes your natural mode when working with clients?</label>
+      <span class="q-hint">Select all that resonate — most people are a blend.</span>
+      <div class="check-grid">
+        <label class="check-item">
+          <input type="checkbox" name="mode"/>
+          <span><strong style="display:block; font-size:14px; letter-spacing:-0.02em;">The Strategist</strong><span style="font-size:12px; color:var(--warm-gray);">You think several moves ahead. Clients come for advice on what to do, not just what's legal.</span></span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" name="mode"/>
+          <span><strong style="display:block; font-size:14px; letter-spacing:-0.02em;">The Protector</strong><span style="font-size:12px; color:var(--warm-gray);">You're the last line of defence. Clients trust you to catch what others miss.</span></span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" name="mode"/>
+          <span><strong style="display:block; font-size:14px; letter-spacing:-0.02em;">The Translator</strong><span style="font-size:12px; color:var(--warm-gray);">You turn legal complexity into plain language clients actually understand.</span></span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" name="mode"/>
+          <span><strong style="display:block; font-size:14px; letter-spacing:-0.02em;">The Architect</strong><span style="font-size:12px; color:var(--warm-gray);">You build commercial frameworks and structures. Clients rely on you to design how things are held together.</span></span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" name="mode"/>
+          <span><strong style="display:block; font-size:14px; letter-spacing:-0.02em;">The Challenger</strong><span style="font-size:12px; color:var(--warm-gray);">You push back when clients need it. They don't always love it — but they always come back.</span></span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" name="mode"/>
+          <span><strong style="display:block; font-size:14px; letter-spacing:-0.02em;">The Closer</strong><span style="font-size:12px; color:var(--warm-gray);">You're at your best in high-stakes moments — negotiations, deals, disputes that have to land.</span></span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" name="mode"/>
+          <span><strong style="display:block; font-size:14px; letter-spacing:-0.02em;">The Dealmaker</strong><span style="font-size:12px; color:var(--warm-gray);">You find the commercial path through complex transactions. Clients rely on you to get deals across the line.</span></span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" name="mode"/>
+          <span><strong style="display:block; font-size:14px; letter-spacing:-0.02em;">The Trusted Advisor</strong><span style="font-size:12px; color:var(--warm-gray);">Clients call you first — before they call anyone else. You're part of the inner circle.</span></span>
+        </label>
+      </div>
+      <div style="margin-top:0.6rem; display:flex; align-items:center; gap:0.6rem;">
+        <label class="check-item" style="flex:1; cursor:default; background:transparent; border-style:dashed;">
+          <input type="checkbox" id="mode-other-cb" onchange="document.getElementById('mode-other-input').disabled=!this.checked; if(this.checked) document.getElementById('mode-other-input').focus()"/>
+          <span style="white-space:nowrap; flex-shrink:0;">Other:</span>
+          <input type="text" id="mode-other-input" disabled placeholder="Describe your mode…" style="border:none; background:transparent; outline:none; font-size:14px; color:var(--near-black); width:100%; padding:0; letter-spacing:-0.01em;"/>
+        </label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Outside of law — what are you genuinely interested in, curious about, or known for among people who know you personally?</label>
+      <span class="q-hint">Interests, obsessions, hobbies, things you read, things you argue about at dinner. This adds texture to a brand.</span>
+      <textarea placeholder="e.g. Deeply interested in AI ethics and how regulation trails technology. Also into architecture, brutal honesty in design, and I'm the person who reads the actual privacy policies at parties…"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="q-label">How would you describe your energy and communication style?</label>
+      <span class="q-hint">Select all that apply.</span>
+      <div class="check-grid">
+        <label class="check-item"><input type="checkbox" name="energy"/> Direct and plain-spoken</label>
+        <label class="check-item"><input type="checkbox" name="energy"/> Warm and disarming</label>
+        <label class="check-item"><input type="checkbox" name="energy"/> Analytical and structured</label>
+        <label class="check-item"><input type="checkbox" name="energy"/> Dry and understated</label>
+        <label class="check-item"><input type="checkbox" name="energy"/> Opinionated and provocative</label>
+        <label class="check-item"><input type="checkbox" name="energy"/> Educational and patient</label>
+        <label class="check-item"><input type="checkbox" name="energy"/> Empathetic and collaborative</label>
+        <label class="check-item"><input type="checkbox" name="energy"/> Precise and detail-oriented</label>
+      </div>
+      <div style="margin-top:0.6rem; display:flex; align-items:center; gap:0.6rem;">
+        <label class="check-item" style="flex:1; cursor:default; background:transparent; border-style:dashed;">
+          <input type="checkbox" id="energy-other-cb" onchange="document.getElementById('energy-other-input').disabled=!this.checked; if(this.checked) document.getElementById('energy-other-input').focus()"/>
+          <span style="white-space:nowrap; flex-shrink:0;">Other:</span>
+          <input type="text" id="energy-other-input" disabled placeholder="Describe your style…" style="border:none; background:transparent; outline:none; font-size:14px; color:var(--near-black); width:100%; padding:0; letter-spacing:-0.01em;"/>
+        </label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="q-label">On a scale of 1–10, how comfortable are you being visible and having a loud public point of view?</label>
+      <span class="q-hint">1 = strongly prefer to stay private / 10 = fully ready to be known and opinionated</span>
+      <div class="scale-row" id="comfort-scale">
+        <button class="scale-btn" type="button" onclick="setScale('comfort-scale',this)">1</button>
+        <button class="scale-btn" type="button" onclick="setScale('comfort-scale',this)">2</button>
+        <button class="scale-btn" type="button" onclick="setScale('comfort-scale',this)">3</button>
+        <button class="scale-btn" type="button" onclick="setScale('comfort-scale',this)">4</button>
+        <button class="scale-btn" type="button" onclick="setScale('comfort-scale',this)">5</button>
+        <button class="scale-btn" type="button" onclick="setScale('comfort-scale',this)">6</button>
+        <button class="scale-btn" type="button" onclick="setScale('comfort-scale',this)">7</button>
+        <button class="scale-btn" type="button" onclick="setScale('comfort-scale',this)">8</button>
+        <button class="scale-btn" type="button" onclick="setScale('comfort-scale',this)">9</button>
+        <button class="scale-btn" type="button" onclick="setScale('comfort-scale',this)">10</button>
+      </div>
+      <div class="scale-labels"><span>Prefer privacy</span><span>Loud &amp; opinionated</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── S03: POINT OF VIEW ── -->
+<div class="section" id="s03">
+  <div class="section-left">
+    <div class="section-num">03 / 08</div>
+    <div class="section-title">Your Legal Philosophy</div>
+    <p class="section-note">The most memorable personal brands are built on a genuine point of view — not just expertise.</p>
+  </div>
+  <div class="section-right">
+
+    <div class="q">
+      <label class="q-label">What do you believe about the law — or the way legal services should work — that most lawyers in your field wouldn't say publicly?</label>
+      <span class="q-hint">No filter. This is the rawest version of your point of view. It doesn't have to be fully formed.</span>
+      <textarea placeholder="e.g. Most tech lawyers are still writing contracts designed to intimidate rather than to actually manage risk. The whole industry benefits from keeping founders scared and dependent — and I find that genuinely frustrating…"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="q-label">What is the biggest misconception your ideal clients have about tech law — or about working with a lawyer in general?</label>
+      <textarea placeholder="e.g. That they can't afford it until something goes wrong. Or that a cheap template is the same as a properly drafted agreement. Or that AI tools will replace the need for real legal advice…"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="q-label">What topics do you have the most genuine depth and energy around right now?</label>
+      <div class="check-grid">
+        <label class="check-item"><input type="checkbox"/> Property development law</label>
+        <label class="check-item"><input type="checkbox"/> M&amp;A / acquisitions &amp; due diligence</label>
+        <label class="check-item"><input type="checkbox"/> AI regulation &amp; liability</label>
+        <label class="check-item"><input type="checkbox"/> Startup equity &amp; cap tables</label>
+        <label class="check-item"><input type="checkbox"/> SaaS &amp; tech contracts</label>
+        <label class="check-item"><input type="checkbox"/> Data privacy (GDPR / Privacy Act)</label>
+        <label class="check-item"><input type="checkbox"/> IP strategy &amp; licensing</label>
+        <label class="check-item"><input type="checkbox"/> Legal literacy for founders</label>
+        <label class="check-item"><input type="checkbox"/> Legal tech &amp; AI tools</label>
+        <label class="check-item"><input type="checkbox"/> Employment law in tech</label>
+        <label class="check-item"><input type="checkbox"/> Cross-border / international</label>
+        <label class="check-item"><input type="checkbox"/> Risk, compliance &amp; governance</label>
+        <label class="check-item"><input type="checkbox"/> Cyber / data breach response</label>
+      </div>
+      <div style="margin-top:0.6rem; display:flex; align-items:center; gap:0.6rem;">
+        <label class="check-item" style="flex:1; cursor:default; background:transparent; border-style:dashed;">
+          <input type="checkbox" id="topics-other-cb" onchange="document.getElementById('topics-other-input').disabled=!this.checked; if(this.checked) document.getElementById('topics-other-input').focus()"/>
+          <span style="white-space:nowrap; flex-shrink:0;">Other:</span>
+          <input type="text" id="topics-other-input" disabled placeholder="Add another topic area…" style="border:none; background:transparent; outline:none; font-size:14px; color:var(--near-black); width:100%; padding:0; letter-spacing:-0.01em;"/>
+        </label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Are there 1–2 lawyers or professionals whose personal brand you genuinely respect? What specifically works about how they show up?</label>
+      <span class="q-hint">Doesn't have to be Australian. Even noting a brand you'd actively avoid helps us define direction.</span>
+      <textarea placeholder="Names + what you admire (or what to avoid) about how they present publicly…"></textarea>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── S04: GOALS & AUDIENCE ── -->
+<div class="section" id="s04">
+  <div class="section-left">
+    <div class="section-num">04 / 08</div>
+    <div class="section-title">Goals &amp; Audience</div>
+    <p class="section-note">Brand without a business objective is just aesthetics. Let's tie this to outcomes.</p>
+  </div>
+  <div class="section-right">
+
+    <div class="q">
+      <label class="q-label">What is the primary business goal of building your personal brand right now?</label>
+      <select>
+        <option value="">— Select primary goal —</option>
+        <option>Attract more (or better quality) inbound client inquiries</option>
+        <option>Position for speaking, panels, or media commentary</option>
+        <option>Build credibility to support my AI product launch</option>
+        <option>Transition toward independent practice or solo firm</option>
+        <option>Raise profile within a specific industry vertical</option>
+        <option>Support a business partnership or joint venture</option>
+        <option>Multiple goals — I'll explain below</option>
+      </select>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Describe your ideal client or audience in detail — not just demographics, but mindset.</label>
+      <span class="q-hint">Industry, role, company stage, geography, what they're building, what keeps them up at night legally.</span>
+      <textarea placeholder="e.g. Australian tech founders at Seed to Series A, building SaaS or AI products, signing their first serious commercial contracts, probably don't yet have in-house counsel, and are making legal decisions based on gut instinct or Google…"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="q-label">What platforms are you currently active on — and where do your ideal clients actually spend time?</label>
+      <div class="check-grid">
+        <label class="check-item"><input type="checkbox"/> LinkedIn</label>
+        <label class="check-item"><input type="checkbox"/> Instagram</label>
+        <label class="check-item"><input type="checkbox"/> X / Twitter</label>
+        <label class="check-item"><input type="checkbox"/> Substack / newsletter</label>
+        <label class="check-item"><input type="checkbox"/> Podcast (guest or own)</label>
+        <label class="check-item"><input type="checkbox"/> YouTube</label>
+        <label class="check-item"><input type="checkbox"/> Speaking / events</label>
+        <label class="check-item"><input type="checkbox"/> None yet</label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="q-label">What does success look like at 6 months? At 12 months?</label>
+      <span class="q-hint">Be specific. Inquiries, followers, speaking slots, product signups, revenue — whatever actually matters to you.</span>
+      <div class="two-col">
+        <textarea placeholder="6-month benchmark…" style="min-height:90px"></textarea>
+        <textarea placeholder="12-month benchmark…" style="min-height:90px"></textarea>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Are there hard limits on what you will and won't say publicly? (Professional, regulatory, firm, personal)</label>
+      <span class="q-hint">e.g. Social media policy, active matters, personal boundaries, bar association rules on advertising.</span>
+      <textarea placeholder="Flag anything now so we design around it from the start…"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Realistically, how much time can you give to content each week?</label>
+      <select>
+        <option value="">— Select —</option>
+        <option>Under 30 minutes</option>
+        <option>30–60 minutes</option>
+        <option>1–2 hours</option>
+        <option>2–4 hours</option>
+        <option>I want to be as hands-off as possible — you lead</option>
+      </select>
+    </div>
+
+  </div>
+</div>
+
+</main>
+
+<!-- ════════════════════════════════════════ -->
+<!-- TRACK B BANNER                          -->
+<!-- ════════════════════════════════════════ -->
+<div class="track-banner" style="margin-top:2px">
+  <div class="track-banner-inner">
+    <span class="track-id">Track B</span>
+    <span class="track-title">AI Product</span>
+    <span class="track-desc">Your vision, your users, and how we build it without cutting corners.</span>
+  </div>
+</div>
+
+<main>
+
+<!-- ── S05: THE IDEA ── -->
+<div class="section" id="s05">
+  <div class="section-left">
+    <div class="section-num">05 / 08</div>
+    <div class="section-title">The Problem &amp; Vision</div>
+    <p class="section-note">We start with the problem and the person — not the technology. What changes for someone when this exists?</p>
+  </div>
+  <div class="section-right">
+
+    <div class="q">
+      <label class="q-label">In plain language, what problem does this AI app solve?</label>
+      <span class="q-hint">Describe it as you would to a smart client who doesn't care about technology.</span>
+      <textarea placeholder="e.g. Founders waste weeks and thousands of dollars getting standard SaaS contracts reviewed. This app gives them a plain-English risk summary of any agreement in under 5 minutes — so they know where the real exposure is before they sign…"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Who is the primary user? Paint a picture of a specific person.</label>
+      <span class="q-hint">Name them, describe their day, their frustration, their budget reality.</span>
+      <textarea placeholder="e.g. James, 34, CTO-turned-founder, raised $800K pre-seed for a B2B SaaS product. He's signing vendor contracts every other week, can't afford to call a lawyer for each one, and has started just signing things without reading them because the alternative is losing a deal…"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="q-label">What does the user do today without your app? What are they actually replacing?</label>
+      <textarea placeholder="e.g. They email their lawyer (slow, expensive), use generic ChatGPT (no legal accuracy, hallucination risk), sign without reading (high risk), or hire a $500/hr lawyer to review a $5K contract (absurd ROI)…"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="q-label">What is the core action your app performs?</label>
+      <div class="check-grid">
+        <label class="check-item"><input type="checkbox"/> Reviews and analyses documents</label>
+        <label class="check-item"><input type="checkbox"/> Drafts legal documents</label>
+        <label class="check-item"><input type="checkbox"/> Answers legal Q&amp;A</label>
+        <label class="check-item"><input type="checkbox"/> Flags risk in contracts</label>
+        <label class="check-item"><input type="checkbox"/> Explains legal concepts plainly</label>
+        <label class="check-item"><input type="checkbox"/> Automates intake / triage</label>
+        <label class="check-item"><input type="checkbox"/> Manages client communications</label>
+        <label class="check-item"><input type="checkbox"/> Generates clauses or redlines</label>
+        <label class="check-item"><input type="checkbox"/> Compliance monitoring</label>
+        <label class="check-item"><input type="checkbox"/> Something else (describe below)</label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Working title for the product (or "no name yet")</label>
+      <input type="text" placeholder="Working title…"/>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── S06: REGULATORY ── -->
+<div class="section" id="s06">
+  <div class="section-left">
+    <div class="section-num">06 / 08</div>
+    <div class="section-title">Regulatory &amp; Ethics Constraints</div>
+    <p class="section-note">As a lawyer building for lawyers and clients, the compliance layer isn't optional. We design for it from day one.</p>
+  </div>
+  <div class="section-right">
+
+    <div class="q">
+      <label class="q-label">Is the output of your app "legal information" or "legal advice"? Have you decided where that line sits?</label>
+      <span class="q-hint">This is the foundational product design question. Advice requires a client relationship, information does not — the answer shapes the entire liability architecture.</span>
+      <div class="personality-grid" id="advice-grid">
+        <div class="p-card" onclick="selectCard('advice-grid', this)">
+          <input type="radio" name="advice"/>
+          <div class="p-card-title">Legal Information Only</div>
+          <div class="p-card-desc">The app informs — it doesn't advise. Clear disclaimers, no client relationship implied.</div>
+        </div>
+        <div class="p-card" onclick="selectCard('advice-grid', this)">
+          <input type="radio" name="advice"/>
+          <div class="p-card-title">Legal Advice (supervised)</div>
+          <div class="p-card-desc">App output is reviewed or endorsed by a qualified lawyer before it reaches the user.</div>
+        </div>
+        <div class="p-card" onclick="selectCard('advice-grid', this)">
+          <input type="radio" name="advice"/>
+          <div class="p-card-title">Internal Use Only</div>
+          <div class="p-card-desc">Used by the firm's own lawyers — not client-facing at this stage.</div>
+        </div>
+        <div class="p-card" onclick="selectCard('advice-grid', this)">
+          <input type="radio" name="advice"/>
+          <div class="p-card-title">Not decided yet</div>
+          <div class="p-card-desc">I need to work through this — it's one of the things I want help with.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Are there any professional conduct rules, bar association policies, or firm indemnity requirements we need to design around?</label>
+      <textarea placeholder="e.g. Legal Profession Uniform Law requirements in NSW/VIC, PI insurance conditions, Legal Services Commissioner guidance on AI tools, conflicts of interest risk…"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="q-label">What data will the app handle? What are your data governance requirements?</label>
+      <div class="check-grid">
+        <label class="check-item"><input type="checkbox"/> Client-provided contracts</label>
+        <label class="check-item"><input type="checkbox"/> Privileged communications</label>
+        <label class="check-item"><input type="checkbox"/> Personal data (Privacy Act)</label>
+        <label class="check-item"><input type="checkbox"/> Health information</label>
+        <label class="check-item"><input type="checkbox"/> Financial data</label>
+        <label class="check-item"><input type="checkbox"/> None — general public documents only</label>
+        <label class="check-item"><input type="checkbox"/> Not sure yet</label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Have you spoken with your PI insurer or professional body about building this? What was their position?</label>
+      <textarea placeholder="e.g. Not yet / Yes — they said X / I plan to before launch…"></textarea>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── S07: SCOPE & BUSINESS MODEL ── -->
+<div class="section" id="s07">
+  <div class="section-left">
+    <div class="section-num">07 / 08</div>
+    <div class="section-title">Scope, Stage &amp; Business Model</div>
+    <p class="section-note">Understanding where this sits commercially shapes every architecture and pricing decision we'll make.</p>
+  </div>
+  <div class="section-right">
+
+    <div class="q">
+      <label class="q-label">Where is this project right now?</label>
+      <select>
+        <option value="">— Select current stage —</option>
+        <option>It's an idea — nothing built yet</option>
+        <option>I have a concept and rough notes / wireframes</option>
+        <option>I've tested something basic with a few people</option>
+        <option>There's a working prototype but it needs real development</option>
+        <option>There's a live product — I want to improve or scale it</option>
+      </select>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Is this intended to be a standalone revenue product or does it primarily support your practice?</label>
+      <div class="personality-grid" id="intent-grid">
+        <div class="p-card" onclick="selectCard('intent-grid', this)">
+          <input type="radio" name="intent"/>
+          <div class="p-card-title">Standalone SaaS Product</div>
+          <div class="p-card-desc">I want to build and monetise a product that operates independently of my legal work.</div>
+        </div>
+        <div class="p-card" onclick="selectCard('intent-grid', this)">
+          <input type="radio" name="intent"/>
+          <div class="p-card-title">Practice Lead Gen Tool</div>
+          <div class="p-card-desc">The app generates qualified leads that convert into legal engagements — it's a front door.</div>
+        </div>
+        <div class="p-card" onclick="selectCard('intent-grid', this)">
+          <input type="radio" name="intent"/>
+          <div class="p-card-title">Internal Efficiency Tool</div>
+          <div class="p-card-desc">I want to automate and accelerate my own firm's delivery — not sell the tool externally.</div>
+        </div>
+        <div class="p-card" onclick="selectCard('intent-grid', this)">
+          <input type="radio" name="intent"/>
+          <div class="p-card-title">Both — Revenue + Practice</div>
+          <div class="p-card-desc">It generates revenue AND improves how my firm operates. I want both outcomes.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="q-label">What pricing model are you leaning toward?</label>
+      <div class="check-grid">
+        <label class="check-item"><input type="radio" name="pricing"/> Monthly SaaS subscription</label>
+        <label class="check-item"><input type="radio" name="pricing"/> Pay per use / credits</label>
+        <label class="check-item"><input type="radio" name="pricing"/> Annual B2B licence</label>
+        <label class="check-item"><input type="radio" name="pricing"/> Freemium + paid upgrade</label>
+        <label class="check-item"><input type="radio" name="pricing"/> White-label to other firms</label>
+        <label class="check-item"><input type="radio" name="pricing"/> Not decided yet</label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Budget range for the build phase (AUD, approximate)</label>
+      <select>
+        <option value="">— Select range —</option>
+        <option>Under $5,000</option>
+        <option>$5,000 – $15,000</option>
+        <option>$15,000 – $30,000</option>
+        <option>$30,000 – $60,000</option>
+        <option>$60,000+</option>
+        <option>Undecided — need to understand scope first</option>
+      </select>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Target launch timeline</label>
+      <select>
+        <option value="">— Select —</option>
+        <option>Within 3 months</option>
+        <option>3–6 months</option>
+        <option>6–12 months</option>
+        <option>12+ months — no hard deadline</option>
+        <option>Flexible — quality over speed</option>
+      </select>
+    </div>
+
+    <div class="q">
+      <label class="q-label">What validation do you have that people would pay for this? What evidence exists?</label>
+      <span class="q-hint">Conversations, surveys, waitlist signups, competitor research, your own client behaviour — anything counts.</span>
+      <textarea placeholder="e.g. Three founder clients told me they'd pay $99/month to avoid emailing me every time they get a contract. I've also seen Spotta and Luminance pricing — there's clearly a market, just not at the right price point for SMEs…"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Who is your strongest competitor or closest existing alternative? Where do they fall short?</label>
+      <textarea placeholder="e.g. Harvey AI is BigLaw-only — too expensive and too general. LawPath is templates, not AI analysis. Nothing niche to tech law in APAC at an SME-accessible price point…"></textarea>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── S08: WORKING TOGETHER ── -->
+<div class="section" id="s08">
+  <div class="section-left">
+    <div class="section-num">08 / 08</div>
+    <div class="section-title">Working Together</div>
+    <p class="section-note">The last section. This helps us design a working relationship that actually fits your life — not an idealised version of it.</p>
+  </div>
+  <div class="section-right">
+
+    <div class="q">
+      <label class="q-label">How do you prefer to receive updates and communicate?</label>
+      <div class="check-grid">
+        <label class="check-item"><input type="radio" name="comms"/> Async (email / Loom)</label>
+        <label class="check-item"><input type="radio" name="comms"/> Fortnightly scheduled calls</label>
+        <label class="check-item"><input type="radio" name="comms"/> Weekly written updates</label>
+        <label class="check-item"><input type="radio" name="comms"/> WhatsApp for quick things</label>
+        <label class="check-item"><input type="radio" name="comms"/> Ad hoc as needed</label>
+        <label class="check-item"><input type="radio" name="comms"/> Minimal — just deliver</label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Have you worked with a creative or tech agency before? What frustrated you — or what worked well?</label>
+      <textarea placeholder="e.g. Previous agency was strong on ideas but terrible at timelines. Felt out of the loop unless I chased. Revisions turned into a money pit…"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="q-label">How do you make decisions? What does your decision-making process look like when you're buying something significant?</label>
+      <span class="q-hint">This helps us pitch, scope, and present work in a way that maps to how you actually evaluate things.</span>
+      <div class="personality-grid" id="decision-grid">
+        <div class="p-card" onclick="selectCard('decision-grid', this)">
+          <input type="radio" name="decision"/>
+          <div class="p-card-title">Data-First</div>
+          <div class="p-card-desc">I need clear evidence, benchmarks, and ROI projections before I commit to anything.</div>
+        </div>
+        <div class="p-card" onclick="selectCard('decision-grid', this)">
+          <input type="radio" name="decision"/>
+          <div class="p-card-title">Instinct + Trust</div>
+          <div class="p-card-desc">If I trust the person and the approach feels right, I move quickly. I don't need every detail first.</div>
+        </div>
+        <div class="p-card" onclick="selectCard('decision-grid', this)">
+          <input type="radio" name="decision"/>
+          <div class="p-card-title">Proof of Concept</div>
+          <div class="p-card-desc">I want to see something working before I fully commit. Small start, then scale.</div>
+        </div>
+        <div class="p-card" onclick="selectCard('decision-grid', this)">
+          <input type="radio" name="decision"/>
+          <div class="p-card-title">Research Thoroughly</div>
+          <div class="p-card-desc">I compare options, read everything, and take my time. Rushing a decision makes me uncomfortable.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="q-label">What would make this engagement feel like an obvious success — personally, not just professionally?</label>
+      <textarea placeholder="e.g. I feel genuinely proud of how I show up publicly. The app solves a problem I've watched clients struggle with for years. People message me saying it helped them. I stop dreading the question 'what do you do?'…"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Anything else we should know before we start?</label>
+      <textarea placeholder="Open field — anything the questions didn't capture…"></textarea>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── SUBMIT ── -->
+<div class="submit-wrap">
+  <div class="submit-left">
+    <div class="section-title">That's everything.</div>
+    <p class="section-note" style="margin-top:1rem">All responses are confidential. We'll come back to you within 2 business days with a recommended scope for both tracks.</p>
+  </div>
+  <div class="submit-right">
+    <p class="submit-note">
+      We review every intake personally before responding — no automated replies, no generic proposals. You'll hear from us with something genuinely useful.
+    </p>
+    <button class="btn-primary" id="submit-btn" onclick="handleSubmit()">
+      Submit Intake <span class="btn-arrow">→</span>
+    </button>
+    <button class="btn-secondary" type="button" onclick="saveAndExit()">
+      Save &amp; Continue Later
+    </button>
+  </div>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">thelocale.agency</span>
+  <span class="footer-text">Built on Trust. Powered by AI.</span>
+</footer>
+
+<!-- SUCCESS -->
+<div class="success-overlay" id="success">
+  <div class="success-icon">✓</div>
+  <div class="success-title">Intake received.</div>
+  <p class="success-sub">We'll review your responses and come back within 2 business days — with something genuinely useful, not a template.</p>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── Scale buttons ──
+function setScale(groupId, btn) {
+  document.querySelectorAll(`#${groupId} .scale-btn`).forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  updateProgress();
+}
+
+// ── Personality cards ──
+function selectCard(gridId, card) {
+  document.querySelectorAll(`#${gridId} .p-card`).forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  card.querySelector('input[type="radio"]').checked = true;
+  updateProgress();
+}
+
+// ── Progress ──
+function updateProgress() {
+  const textInputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="url"], textarea, select');
+  let filled = 0;
+  textInputs.forEach(el => {
+    if (el.value && el.value.trim() !== '' && !el.value.startsWith('—')) filled++;
+  });
+  const checks  = document.querySelectorAll('input[type="checkbox"]:checked, input[type="radio"]:checked').length;
+  const scales  = document.querySelectorAll('.scale-btn.active').length;
+  const pcards  = document.querySelectorAll('.p-card.selected').length;
+  const total = textInputs.length + 14 + 3 + 4;
+  const done  = filled + checks + scales + pcards;
+  const pct   = Math.min(100, Math.round((done / total) * 100));
+  document.getElementById('nav-fill').style.width = pct + '%';
+  document.getElementById('nav-pct').textContent = pct + '% complete';
+}
+
+document.addEventListener('input', updateProgress);
+document.addEventListener('change', updateProgress);
+
+// ── Save / Restore progress (localStorage) ──
+const STORAGE_KEY = 'locale_akiras_intake';
+
+function saveProgress() {
+  const state = {
+    texts: [],
+    textareas: [],
+    selects: [],
+    checkboxes: [],
+    radios: [],
+    scales: [],
+    cards: [],
+    savedAt: new Date().toISOString()
+  };
+
+  document.querySelectorAll('input[type="text"], input[type="email"], input[type="url"]').forEach(el => {
+    state.texts.push(el.value);
+  });
+  document.querySelectorAll('textarea').forEach(el => {
+    state.textareas.push(el.value);
+  });
+  document.querySelectorAll('select').forEach(el => {
+    state.selects.push(el.value);
+  });
+  document.querySelectorAll('input[type="checkbox"]').forEach(el => {
+    state.checkboxes.push(el.checked);
+  });
+  document.querySelectorAll('input[type="radio"]').forEach(el => {
+    state.radios.push(el.checked);
+  });
+  document.querySelectorAll('.scale-btn').forEach(el => {
+    state.scales.push(el.classList.contains('active'));
+  });
+  document.querySelectorAll('.p-card').forEach(el => {
+    state.cards.push(el.classList.contains('selected'));
+  });
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+
+  const indicator = document.getElementById('nav-saved');
+  indicator.textContent = 'saved';
+  indicator.classList.add('show');
+  setTimeout(() => indicator.classList.remove('show'), 2000);
+}
+
+function restoreProgress() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return;
+
+  try {
+    const state = JSON.parse(raw);
+
+    document.querySelectorAll('input[type="text"], input[type="email"], input[type="url"]').forEach((el, i) => {
+      if (state.texts[i] != null) el.value = state.texts[i];
+    });
+    document.querySelectorAll('textarea').forEach((el, i) => {
+      if (state.textareas[i] != null) el.value = state.textareas[i];
+    });
+    document.querySelectorAll('select').forEach((el, i) => {
+      if (state.selects[i] != null) el.value = state.selects[i];
+    });
+    document.querySelectorAll('input[type="checkbox"]').forEach((el, i) => {
+      if (state.checkboxes[i] != null) el.checked = state.checkboxes[i];
+    });
+    document.querySelectorAll('input[type="radio"]').forEach((el, i) => {
+      if (state.radios[i] != null) {
+        el.checked = state.radios[i];
+      }
+    });
+    document.querySelectorAll('.scale-btn').forEach((el, i) => {
+      if (state.scales[i]) el.classList.add('active');
+    });
+    document.querySelectorAll('.p-card').forEach((el, i) => {
+      if (state.cards[i]) {
+        el.classList.add('selected');
+        const radio = el.querySelector('input[type="radio"]');
+        if (radio) radio.checked = true;
+      }
+    });
+
+    updateProgress();
+  } catch (e) {
+    // corrupted data — ignore
+  }
+}
+
+function clearSavedProgress() {
+  localStorage.removeItem(STORAGE_KEY);
+}
+
+function saveAndExit() {
+  saveProgress();
+  const indicator = document.getElementById('nav-saved');
+  indicator.textContent = 'progress saved — you can close this tab';
+  indicator.classList.add('show');
+}
+
+// Auto-save on changes (debounced)
+let saveTimer;
+document.addEventListener('input', () => { clearTimeout(saveTimer); saveTimer = setTimeout(saveProgress, 1000); });
+document.addEventListener('change', () => { clearTimeout(saveTimer); saveTimer = setTimeout(saveProgress, 500); });
+
+// Restore on page load
+restoreProgress();
+
+// ── Scroll-triggered section reveal ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+// ── Collect checked checkboxes from a section ──
+function getCheckedBySection(sectionId) {
+  return [...document.querySelectorAll(`#${sectionId} input[type="checkbox"]:checked`)]
+    .map(el => el.closest('.check-item')?.textContent?.trim() || '')
+    .filter(Boolean).join(', ');
+}
+
+function getCheckedRadio(name) {
+  const el = document.querySelector(`input[name="${name}"]:checked`);
+  if (!el) return '';
+  return el.closest('.check-item')?.textContent?.trim() || '';
+}
+
+function getSelectedCard(gridId) {
+  const el = document.querySelector(`#${gridId} .p-card.selected .p-card-title`);
+  return el ? el.textContent.trim() : '';
+}
+
+function getScale(groupId) {
+  const el = document.querySelector(`#${groupId} .scale-btn.active`);
+  return el ? el.textContent.trim() : '';
+}
+
+function getCheckedByName(name) {
+  return [...document.querySelectorAll(`input[name="${name}"]:checked`)]
+    .map(el => el.closest('.check-item')?.textContent?.trim() || '')
+    .filter(Boolean).join(', ');
+}
+
+// ── Collect all form data ──
+function collectFormData() {
+  const textareas  = [...document.querySelectorAll('textarea')];
+  const textInputs = [...document.querySelectorAll('input[type="text"]:not(#energy-other-input):not(#mode-other-input):not(#topics-other-input)')];
+  const selects    = [...document.querySelectorAll('select')];
+
+  // "Other" text fields — only include if their checkbox is ticked
+  const energyOther = document.getElementById('energy-other-cb')?.checked
+    ? (document.getElementById('energy-other-input')?.value?.trim() || '') : '';
+  const modeOther = document.getElementById('mode-other-cb')?.checked
+    ? (document.getElementById('mode-other-input')?.value?.trim() || '') : '';
+  const topicsOther = document.getElementById('topics-other-cb')?.checked
+    ? (document.getElementById('topics-other-input')?.value?.trim() || '') : '';
+
+  const energyChecked = getCheckedByName('energy');
+  const commStyle = energyOther ? [energyChecked, `Other: ${energyOther}`].filter(Boolean).join(', ') : energyChecked;
+
+  const modeChecked = getCheckedByName('mode');
+  const workingMode = modeOther ? [modeChecked, `Other: ${modeOther}`].filter(Boolean).join(', ') : modeChecked;
+
+  const topicChecked = getCheckedBySection('s03');
+  const topicAreas = topicsOther ? [topicChecked, `Other: ${topicsOther}`].filter(Boolean).join(', ') : topicChecked;
+
+  return {
+    nameTitle:           textInputs[0]?.value?.trim() || '',
+    practiceAreas:       textareas[0]?.value?.trim()  || '',
+    careerArc:           textareas[1]?.value?.trim()  || '',
+    energisingWork:      textareas[2]?.value?.trim()  || '',
+    drainingWork:        textareas[3]?.value?.trim()  || '',
+    clientSource:        selects[0]?.value            || '',
+    clientDescription:   textareas[4]?.value?.trim()  || '',
+    workingMode,
+    outsideInterests:    textareas[5]?.value?.trim()  || '',
+    commStyle,
+    visibilityComfort:   getScale('comfort-scale'),
+    unpopularOpinion:    textareas[6]?.value?.trim()  || '',
+    clientMisconception: textareas[7]?.value?.trim()  || '',
+    topicAreas,
+    admiredBrands:       textareas[8]?.value?.trim()  || '',
+    brandGoal:           selects[1]?.value            || '',
+    idealClient:         textareas[9]?.value?.trim()  || '',
+    platforms:           getCheckedBySection('s04'),
+    goal6m:              textareas[10]?.value?.trim() || '',
+    goal12m:             textareas[11]?.value?.trim() || '',
+    hardLimits:          textareas[12]?.value?.trim() || '',
+    weeklyTime:          selects[2]?.value            || '',
+    problemStatement:    textareas[13]?.value?.trim() || '',
+    primaryUser:         textareas[14]?.value?.trim() || '',
+    currentWorkaround:   textareas[15]?.value?.trim() || '',
+    appFunctions:        getCheckedBySection('s05'),
+    productName:         textInputs[1]?.value?.trim() || '',
+    adviceDecision:      getSelectedCard('advice-grid'),
+    conductRules:        textareas[16]?.value?.trim() || '',
+    dataTypes:           getCheckedBySection('s06'),
+    piInsurer:           textareas[17]?.value?.trim() || '',
+    buildStage:          selects[3]?.value            || '',
+    revenueIntent:       getSelectedCard('intent-grid'),
+    pricingModel:        getCheckedRadio('pricing'),
+    budget:              selects[4]?.value            || '',
+    timeline:            selects[5]?.value            || '',
+    validation:          textareas[18]?.value?.trim() || '',
+    competitors:         textareas[19]?.value?.trim() || '',
+    commsPreference:     getCheckedRadio('comms'),
+    pastAgency:          textareas[20]?.value?.trim() || '',
+    decisionStyle:       getSelectedCard('decision-grid'),
+    successDefinition:   textareas[21]?.value?.trim() || '',
+    anythingElse:        textareas[22]?.value?.trim() || '',
+  };
+}
+
+// ── Submit ──
+async function handleSubmit() {
+  const btn = document.getElementById('submit-btn');
+
+  btn.disabled = true;
+  btn.innerHTML = '<span style="opacity:0.7;font-family:Helvetica,sans-serif">Submitting…</span>';
+
+  const data = collectFormData();
+
+  try {
+    const res = await fetch('https://formspree.io/f/xojpybqa', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    if (res.ok) {
+      clearSavedProgress();
+      document.getElementById('success').classList.add('show');
+    } else {
+      throw new Error('Form submission failed');
+    }
+  } catch (err) {
+    btn.disabled = false;
+    btn.innerHTML = 'Submit Intake <span class="btn-arrow">→</span>';
+    alert('Something went wrong. Please try again or email hello@thelocale.agency\n\n' + err.message);
+  }
+}
+</script>
+</body>
+</html>
