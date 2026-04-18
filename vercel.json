@@ -1,4 +1,5 @@
 {
+  "cleanUrls": true,
   "rewrites": [
     { "source": "/studio", "destination": "https://the-locale-studio.vercel.app/" },
     { "source": "/studio/:path*", "destination": "https://the-locale-studio.vercel.app/:path*" }
