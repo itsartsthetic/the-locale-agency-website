@@ -1,6 +1,28 @@
 {
   "rewrites": [
-    { "source": "/studio", "destination": "https://the-locale-studio.vercel.app/" },
-    { "source": "/studio/:path*", "destination": "https://the-locale-studio.vercel.app/:path*" }
+    {
+      "source": "/studio",
+      "destination": "https://the-locale-studio.vercel.app/"
+    },
+    {
+      "source": "/studio/:path*",
+      "destination": "https://the-locale-studio.vercel.app/:path*"
+    },
+    {
+      "source": "/ai-native-agency",
+      "destination": "/ai-native-agency.html"
+    },
+    {
+      "source": "/personal-branding-sydney",
+      "destination": "/personal-branding-sydney.html"
+    },
+    {
+      "source": "/sydney-ai-marketing-agency",
+      "destination": "/sydney-ai-marketing-agency.html"
+    },
+    {
+      "source": "/ai-marketing-automation",
+      "destination": "/ai-marketing-automation.html"
+    }
   ]
 }
